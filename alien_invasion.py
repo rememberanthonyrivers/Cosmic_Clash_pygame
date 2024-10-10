@@ -1,11 +1,10 @@
-# an EVENT is an action the user performs while playing the game
-# the FOR loop creates an event loop to listen for user input
-import sys
 import pygame
 
 from settings import Settings
 
-from ship import Ship 
+from ship import Ship
+from alien import Alien
+import game_functions as gf
 
 
 def run_game():
@@ -20,17 +19,16 @@ def run_game():
     # create an instance of a ship
     ship = Ship(screen)
 
-    # start the game loop
+    # create an instance of an alien
+    alien = Alien(screen)
+
+    # start the main game loop
     while True:
-
-        # watches for keyboard and mouse events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
+        gf.check_events(ship)
+        # the ships position will update after weve checked for key events and before we update the screen
+        ship.update()
         # redraws the screen during each pass through the loop
-        screen.fill(ai_settings.bg_color)
-        ship.blitme() 
+        gf.update_screen(ai_settings, screen, ship, alien)
         # make the most recently drawn screen visible
         pygame.display.flip()
 
