@@ -1,7 +1,5 @@
 import pygame
-
 from settings import Settings
-
 from ship import Ship
 from alien import Alien
 import game_functions as gf
@@ -17,7 +15,7 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
 
     # create an instance of a ship
-    ship = Ship(screen)
+    ship = Ship(ai_settings, screen)
 
     # create an instance of an alien
     alien = Alien(screen)
