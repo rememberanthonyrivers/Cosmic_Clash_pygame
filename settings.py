@@ -1,3 +1,8 @@
+# this file contains the Settings class. This class only 
+# has an __init__() method, which initializes attributes 
+# controlling the game’s appearance and the ship’s speed.
+
+
 class Settings:
     """A class to store all settings for Alien Invasion."""
 
@@ -9,4 +14,4 @@ class Settings:
         self.bg_color = (230, 230, 230)
 
         # ship settings
-        self.ship_speed_factor = 1.5 
+        self.ship_speed_factor = 1.5

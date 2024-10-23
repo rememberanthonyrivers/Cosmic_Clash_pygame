@@ -1,3 +1,9 @@
+# alien_invasion.py is the only file you need to run 
+# when you want to play Alien Invasion. The other 
+# files—settings.py, game_functions.py, ship.py— contain 
+# code that is imported, directly or indirectly, into this 
+# file.
+
 import pygame
 from settings import Settings
 from ship import Ship
@@ -9,7 +15,8 @@ def run_game():
     # initialize the game and creates the screen object.
     pygame.init()
     ai_settings = Settings()
-    screen = pygame.display.set_mode(
+    # \/ The main display for the game \/
+    screen: pygame.Surface = pygame.display.set_mode(
         (ai_settings.screen_width, ai_settings.screen_height)
     )
     pygame.display.set_caption("Alien Invasion")

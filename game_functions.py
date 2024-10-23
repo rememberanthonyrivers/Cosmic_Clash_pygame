@@ -1,9 +1,14 @@
+# this file contains a number of functions that carry 
+# out the bulk of the work in the game. The game_functions 
+# module also contains update_screen(), which redraws the 
+# screen on each pass through the main loop.
+
 import sys
 import pygame
 
 
 def check_events(ship):
-    """Respond to keypresses and mouse events."""
+    """Responds to keypresses and mouse events."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -16,7 +21,7 @@ def check_events(ship):
 
 
 def check_keydown_events(event, ship):
-    # \/ checks for key press events \/
+    """Checks for key press events"""
     if event.key == pygame.K_RIGHT:
         # The ship moves to the right
         ship.moving_right = True
@@ -28,7 +33,7 @@ def check_keydown_events(event, ship):
 
 
 def check_keyup_events(event, ship):
-    # \/ checks for key releases events \/
+    """Checks for key release events"""
     if event.type == pygame.KEYUP:
         if event.key == pygame.K_RIGHT:
             # ship movement to the right stops

@@ -1,3 +1,8 @@
+# this module manages the ships position , and a blitme() method
+# to draw the ship to the screen on eash pass through the main while
+# loop. The actual image (/images/ship.bpm) is stored within the
+# images folder
+
 import pygame
 
 
