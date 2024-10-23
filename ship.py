@@ -1,5 +1,6 @@
 import pygame
 
+
 class Ship:
     def __init__(self, ai_settings, screen):
         """Initialize the ship and set its starting position on the screen"""
@@ -24,14 +25,23 @@ class Ship:
 
     def update(self):
         """Update the ship's position based on the movement flag"""
-        # update the ships center value, not the rect 
+        # update the ships center value, not the rect
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center += self.ai_settings.ship_speed_factor
 
-        if self.moving_left and self.rect.right > 0:
+        if self.moving_left and self.rect.left > 0:
             self.center -= self.ai_settings.ship_speed_factor
 
-        # update rect object from self.center
+        # Enforce boundaries to prevent the ship from going out of the screen.
+        if self.rect.left < 0:
+            self.center = self.rect.width / 2  # Reset to the edge if left out of bounds
+
+        if self.rect.right > self.screen_rect.width:
+            self.center = self.screen_rect.width - (
+                self.rect.width / 2
+            )  # Reset to right edge
+
+        # Update rect object from self.center
         self.rect.centerx = int(self.center)
 
     def blitme(self):
