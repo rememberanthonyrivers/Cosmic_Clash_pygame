@@ -1,15 +1,22 @@
 import sys
 import pygame
 
-
 # keys = pygame.key.get_pressed()
 
 def check_events(ship):
     """Respond to keypresses and mouse events."""
+    # ///// Uncomment the below code block together to have in-sync keypress movements 
+    # \/ checks for keydown and keyup events \/
+    # keys = pygame.key.get_pressed()
+    # # Update movement flags based on key states
+    # ship.moving_right = keys[pygame.K_RIGHT]
+    # ship.moving_left = keys[pygame.K_LEFT]
+    # /////
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        # checks if a key is pressed, if both keys are pressed our ship stops moving
+        # \/ checks for keydown events \/ 
         elif event.type == pygame.KEYDOWN:
             # if the key is the right arrow key
             if event.key == pygame.K_RIGHT:
@@ -20,13 +27,13 @@ def check_events(ship):
                 ship.moving_left = True
                 print("Left arrow pressed: moving_left =", ship.moving_left)
 
-        # checks if a key is released
+        # \/ checks for key up events \/
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 # The ship stops moving to the right
                 ship.moving_right = False
                 print("Right arrow released: moving_right =", ship.moving_right)
-                # the below line is not hitting, theflag is not being called 
+                # the below line is not hitting, the flag is not being called
             elif event.type == pygame.K_LEFT:
                 ship.moving_left = False
                 print("Left arrow released: moving_left =", ship.moving_left)
