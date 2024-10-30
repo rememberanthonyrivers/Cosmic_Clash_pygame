@@ -34,8 +34,7 @@ def run_game():
         ship.update()
         # redraws the screen during each pass through the loop
         gf.update_screen(ai_settings, screen, ship, alien)
-        # make the most recently drawn screen visible
-        pygame.display.flip()
+        
 
 
 run_game()

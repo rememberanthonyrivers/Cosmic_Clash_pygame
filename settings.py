@@ -1,5 +1,5 @@
-# this file contains the Settings class. This class only 
-# has an __init__() method, which initializes attributes 
+# this file contains the Settings class. This class only
+# has an __init__() method, which initializes attributes
 # controlling the game’s appearance and the ship’s speed.
 
 
@@ -14,4 +14,10 @@ class Settings:
         self.bg_color = (230, 230, 230)
 
         # ship settings
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 2
+
+        # Bullet settings
+        self.bullet_speed_factor = 1
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
