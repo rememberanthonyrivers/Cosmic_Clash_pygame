@@ -8,9 +8,8 @@ class Bullet(Sprite):
         super(Bullet, self).__init__()
         self.screen = screen
 
-    # Create a bullet rect at (0, 0) and then set correct position.
-        self.rect = pygame.Rect(0, 0, ai_settings.bullet_width,
-            ai_settings.bullet_height)
+        # Create a bullet rect at (0, 0) and then set correct position.
+        self.rect = pygame.Rect(0, 0, ai_settings.bullet_width, ai_settings.bullet_height)
         # we set the bullet’s centerx to be the same as the ship’s rect.centerx. 
         # The bullet should emerge from the top of the ship
         self.rect.centerx = ship.rect.centerx
