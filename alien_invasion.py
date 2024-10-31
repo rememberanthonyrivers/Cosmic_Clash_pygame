@@ -1,5 +1,5 @@
 import pygame
-from pygame.sprite import Group 
+from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 from alien import Alien
@@ -32,21 +32,14 @@ def run_game():
         ship.update()
         # redraws the screen during each pass through the loop
         bullets.update()
-
-        # Get rid of bullets that have disappeared.
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
-        # print(len(bullets)) # prints how many bullets are displayed left on the screen 
-
+        gf.update_bullets(bullets)
         gf.update_screen(ai_settings, screen, ship, alien, bullets)
-        
 
 
 run_game()
 
-# alien_invasion.py is the only file you need to run 
-# when you want to play Alien Invasion. The other 
-# files—settings.py, game_functions.py, ship.py— contain 
-# code that is imported, directly or indirectly, into this 
+# alien_invasion.py is the only file you need to run
+# when you want to play Alien Invasion. The other
+# files—settings.py, game_functions.py, ship.py— contain
+# code that is imported, directly or indirectly, into this
 # file.

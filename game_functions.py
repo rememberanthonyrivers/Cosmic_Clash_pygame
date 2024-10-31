@@ -27,13 +27,17 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
         print("\nLeft Key was pressed\n")
-    elif event.key ==pygame.K_SPACE:
-        # Create a new bullet and add it to the bullets group.
-        if len(bullets) < ai_settings.bullets_allowed:
-            new_bullet = Bullet(ai_settings, screen, ship)
-            # print("\nSpace Key was pressed\n")
-            bullets.add(new_bullet)
-        
+    elif event.key == pygame.K_SPACE:
+        fire_bullet(ai_settings, screen, ship, bullets)
+
+
+def fire_bullet(ai_settings, screen, ship, bullets):
+    """Fire a bullet if limit is not reached yet."""
+    # Create a new bullet and add it to the bullets group.
+    if len(bullets) < ai_settings.bullets_allowed:
+        new_bullet = Bullet(ai_settings, screen, ship)
+        print("\nSpace Key was pressed\n")
+        bullets.add(new_bullet)
 
 
 def check_keyup_events(event, ship):
@@ -44,6 +48,18 @@ def check_keyup_events(event, ship):
 
         elif event.key == pygame.K_LEFT:
             ship.moving_left = False
+
+
+def update_bullets(bullets):
+    """Update position of bullets and get rid of old bullets."""
+    # Update the position of bullets.
+    bullets.update()
+
+    # Get rid of bullets that have disappered
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+    # print(len(bullets)) # prints how many bullets are displayed left on the screen
 
 
 def update_screen(ai_settings, screen, ship, alien, bullets):
