@@ -15,6 +15,9 @@ class Settings:
         # ship settings
         self.ship_speed_factor = 4
 
+        # Alien settings
+        self.alien_speed_factor = 1
+
         # Bullet settings
         self.bullet_speed_factor = 7
         self.bullet_width = 6
