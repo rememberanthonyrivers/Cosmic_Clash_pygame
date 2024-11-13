@@ -2,7 +2,6 @@
 # to draw the ship to the screen on eash pass through the main while
 # loop. The actual image (/images/ship.bpm) is stored within the
 # images folder
-
 import pygame
 
 
@@ -23,7 +22,6 @@ class Ship:
 
         # Store a decimal value for the ships center
         self.center = float(self.rect.centerx)
-        # self.centery = float(self.rect.centery)
 
         # Movement flags
         self.moving_right = False

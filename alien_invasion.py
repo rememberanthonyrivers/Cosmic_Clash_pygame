@@ -1,8 +1,9 @@
 import pygame
 from pygame.sprite import Group
 from settings import Settings
-from ship import Ship
 import game_functions as gf
+
+from ship import Ship
 
 
 def run_game():
@@ -30,17 +31,9 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         # the ships position will update after weve checked for key events and before we update the screen
         ship.update()
-        # redraws the screen during each pass through the loop
-        # bullets.update()
         gf.update_bullets(bullets)
-        gf.update_aliens(aliens)
+        gf.update_aliens(ai_settings, aliens)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
 run_game()
-
-# alien_invasion.py is the only file you need to run
-# when you want to play Alien Invasion. The other
-# files—settings.py, game_functions.py, ship.py— contain
-# code that is imported, directly or indirectly, into this
-# file.
