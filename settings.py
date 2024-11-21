@@ -19,7 +19,7 @@ class Settings:
         # Alien settings
         self.alien_speed_factor = 1
 
-        # fleet drop speed controls how quickly the fleet drops down the screen
+        # fleet drop speed controls how quickly the alien fleet drops down the screen
         self.fleet_drop_speed = 1
 
         # horizontal speed, fleet direction of 1 represents movement to the right; -1 means to the left
@@ -27,7 +27,7 @@ class Settings:
 
         # Bullet settings
         self.bullet_speed_factor = 7
-        self.bullet_width = 6
+        self.bullet_width = 4
         self.bullet_height = 15
         self.bullet_color = (255, 69, 0)  # Fiery orange/red color
         self.bullets_allowed = 3

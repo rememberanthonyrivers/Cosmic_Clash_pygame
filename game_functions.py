@@ -3,7 +3,7 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
-# keyboard events and ship events
+# keyboard events and ship events,
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -53,16 +53,23 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         bullets.add(new_bullet)
 
 
-def update_bullets(bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """Update position of bullets and get rid of old bullets."""
     # Update the position of bullets.
     bullets.update()
-
     # Get rid of bullets that have disappered
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
     # print(len(bullets)) # prints how many bullets are displayed left on the screen
+    
+
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        # Destroy existing bullets and create new fleet.
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 
 # alien settings
