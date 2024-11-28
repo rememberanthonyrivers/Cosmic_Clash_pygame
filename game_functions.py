@@ -3,7 +3,7 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
-# keyboard events and ship events,
+# keyboard events and ship events
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -61,9 +61,13 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    # print(len(bullets)) # prints how many bullets are displayed left on the screen
-    
 
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    """Respond to bullet-alien collisions."""
+    # Remove any bullets and aliens that have collided.
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
@@ -73,6 +77,16 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
 
 
 # alien settings
+
+
+def create_alien(ai_settings, screen, aliens, alien_number, row_number):
+    """Create an alien and place it in the row."""
+    alien = Alien(ai_settings, screen)
+    alien_width: int = alien.rect.width
+    alien.x = alien_width + 2 * alien_width * alien_number
+    alien.rect.x = alien.x
+    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+    aliens.add(alien)
 
 
 def get_number_aliens_x(ai_settings, alien_width):
@@ -89,22 +103,12 @@ def get_number_rows(ai_settings, ship_height, alien_height):
     return number_rows
 
 
-def create_alien(ai_settings, screen, aliens, alien_number, row_number):
-    """Create an alien and place it in the row."""
-    alien = Alien(ai_settings, screen)
-    alien_width: int = alien.rect.width
-    alien.x = alien_width + 2 * alien_width * alien_number
-    alien.rect.x = alien.x
-    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
-    aliens.add(alien)
-
-
 def create_fleet(ai_settings, screen, ship, aliens):
     """Create a full fleet of aliens."""
     # Create an alien and find the number of aliens in a row.
     alien = Alien(ai_settings, screen)
-    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
-    number_rows = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
+    number_aliens_x: int = get_number_aliens_x(ai_settings, alien.rect.width)
+    number_rows: int = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
 
     # Create the first row of aliens.
     for row_number in range(number_rows):
@@ -125,13 +129,18 @@ def change_fleet_direction(ai_settings, aliens):
     """Drop the entire fleet and change the fleet's direction."""
     for alien in aliens.sprites():
         alien.rect.y += ai_settings.fleet_drop_speed
+        # using positve and negative numbers to change fleet direction (1, -1)
         ai_settings.fleet_direction *= -1
 
 
-def update_aliens(ai_settings, aliens):
+def update_aliens(ai_settings, ship, aliens):
     """Check if the fleet is at an edge, and then update the postions of all aliens in the fleet."""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
+
+    # Look for alien-ship collisions.
+    if pygame.sprite.spritecollideany(ship, aliens):
+        print("Ship hit!!!")
 
 
 # screen settings
