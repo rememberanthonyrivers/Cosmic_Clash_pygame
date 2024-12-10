@@ -10,12 +10,13 @@ class Settings:
 
         # ship settings
         self.ship_speed_factor = 4
+        self.ship_limit = 3
 
         # Alien settings
         self.alien_speed_factor = 1
 
         # fleet drop speed controls how quickly the alien fleet drops down the screen
-        self.fleet_drop_speed = .25
+        self.fleet_drop_speed = 0.25
 
         # horizontal speed, fleet direction of 1 represents movement to the right; -1 means to the left
         self.fleet_direction = 1

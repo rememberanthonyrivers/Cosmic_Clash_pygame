@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Group
 from settings import Settings
+from game_stats import GameStats
 import game_functions as gf
 
 from ship import Ship
@@ -15,6 +16,9 @@ def run_game():
         (ai_settings.screen_width, ai_settings.screen_height)
     )
     pygame.display.set_caption("Alien Invasion")
+
+    # Create an instance to store game statistics.
+    stats = GameStats(ai_settings)
 
     # create a ship
     ship = Ship(ai_settings, screen)
@@ -32,7 +36,7 @@ def run_game():
         # the ships position will update after weve checked for key events and before we update the screen
         ship.update()
         gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        gf.update_aliens(ai_settings, ship, aliens)
+        gf.update_aliens(ai_settings, ship, aliens, stats, screen, bullets)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
